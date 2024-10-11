@@ -1,0 +1,8 @@
+{
+    "key":true,
+    "single":[1,2,3,4, "hello"],
+    "numpyArr":{
+        "arr":[1,2,3]
+        "type:Numpy Array"
+    }
+}
