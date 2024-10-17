@@ -38,5 +38,13 @@
             "Python",
             "Web Development"
         ]
+    },
+    {
+        "name": "Dimitri",
+        "age": 28,
+        "skills": [
+            "Python",
+            "Web Development"
+        ]
     }
 ]
