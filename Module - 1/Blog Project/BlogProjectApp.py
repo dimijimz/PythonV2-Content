@@ -48,5 +48,11 @@ def delete_post(id):
 
     return {"status": "success", "message": "Successfully Deleted"}
 
+# Search by title
+@app.route('/posts', methods=['GET'])
+def search_posts():
+    title = request.args.get('title')
+    return {'posts': [post for post in posts.values() if title in post['title']]}
+
 if __name__ == '__main__':
     app.run(debug=True)
