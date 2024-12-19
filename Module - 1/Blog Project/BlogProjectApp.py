@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, json
 app = Flask(__name__)
 
 @app.route('/')
@@ -30,6 +30,19 @@ def create_post():
 
     return {"status": "success", "data": posts[current_id - 1]}
 
+# Search by title and pagination
+@app.route('/posts', methods=['GET'])
+def search_posts():
+    page = request.args.get('page', type=int)
+    page_size = request.args.get('size', type=int)
+    title = request.args.get('title')
+    found_post = [post for post in posts.values() if title in post['title']]
+    found_post = found_post[(page - 1) * page_size: page * page_size]
+    found = {'posts': found_post}
+    print(found)
+    return found, 200
+
+
 # Get a post by ID
 @app.route('/posts/<int:id>', methods=['GET'])
 def get_post(id):
@@ -48,11 +61,20 @@ def delete_post(id):
 
     return {"status": "success", "message": "Successfully Deleted"}
 
-# Search by title
-@app.route('/posts', methods=['GET'])
-def search_posts():
-    title = request.args.get('title')
-    return {'posts': [post for post in posts.values() if title in post['title']]}
+def fill_database():
+    global posts
+    with open('database.json', 'r') as f:
+        db = json.load(fp = f)
+
+def save_database():
+    global posts
+    with open('database.json', 'w') as f:
+       json.dump(posts, fp = f)
+
+
+
+
 
 if __name__ == '__main__':
+    fill_database()
     app.run(debug=True)
