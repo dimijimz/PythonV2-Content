@@ -34,7 +34,7 @@ plt.show()
 
 ### Plotting from a DataFrame
 
-Matplotlib integrates well with Pandas, making it a handy tool for plotting data directly from DataFrames. Let's create a `data.csv` file to use in our examples.
+#Matplotlib integrates well with Pandas, making it a handy tool for plotting data directly from DataFrames. Let's create a `data.csv` file to use in our examples.
 
 ### Sample Data for `data.csv`
 
